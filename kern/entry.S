@@ -2,7 +2,6 @@
 
 #include <inc/mmu.h>
 #include <inc/memlayout.h>
-#include <inc/trap.h>
 
 # Shift Right Logical 
 #define SRL(val, shamt)		(((val) >> (shamt)) & ~(-1 << (32 - (shamt))))
@@ -61,8 +60,8 @@ relocated:
 	# stack backtraces will be terminated properly.
 	movl	$0x0,%ebp			# nuke frame pointer
 
-        # Leave a few words on the stack for the user trap frame
-	movl	$(bootstacktop-SIZEOF_STRUCT_TRAPFRAME),%esp
+        # Set the stack pointer
+	movl	$(bootstacktop),%esp
 
 	# now to C code
 	call	i386_init

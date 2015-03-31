@@ -93,7 +93,7 @@ readseg(uint32_t va, uint32_t count, uint32_t offset)
 void
 waitdisk(void)
 {
-	// wait for disk reaady
+	// wait for disk ready
 	while ((inb(0x1F7) & 0xC0) != 0x40)
 		/* do nothing */;
 }
